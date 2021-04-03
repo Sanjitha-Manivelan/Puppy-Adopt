@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block body %}
+{% block content %}
 <div class="jumbotron p-3">
     <div class="well text-center">
         <h1>Puppy Adopt</h1>
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col md-12">
             <div class="jumbotron p-3">
-                <h2>Add <b>A Puppy </b>  <button type="button"  class="btn btn-success float-right"
+                <h2>Add A Puppy  <button type="button"  class="btn btn-outline-success float-right"
                 data-toggle="modal" data-target="#mymodal">Add A New Puppy</button> </h2>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -26,22 +26,20 @@
                 <table class="table table-hover table-info">
                     <tr>
                         <th>Name</th>
-                        <th>Store</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
-                   {% for row in employees %}
+                   {% for row in puppies %}
                     <tr>
                         <td>{{row.name}}</td>
-                        <td>{{row.store}}</td>
                         <td>
-                            <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a>
+                            <a href="/update/{{row.id2}}" class="btn btn-outline-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id2}}">Edit</a>
                         </td>
                         <td>
-                            <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+                            <a href="/delete/{{row.id2}}" class="btn btn-outline-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
                         </td>
                     </tr>
-<div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+<div id="modaledit{{row.id2}}" class="modal fade" role="dialog">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
@@ -51,20 +49,16 @@
             <form action="{{url_for('update')}}" method="POST">
                <div class="form-group">
                   <label>Name:</label>
-                   <input type="hidden"  name="id" value="{{row.id}}">
+                   <input type="hidden"  name="id2" value="{{row.id2}}">
                   <input type="text" class="form-control" name="name" value="{{row.name}}">
                </div>
                <div class="form-group">
-                  <label>Store:</label>
-                  <input type="text" class="form-control" name="store" value="{{row.store}}">
-               </div>
-               <div class="form-group">
-                  <button class="btn btn-primary" type="submit">Update</button>
+                  <button class="btn btn-outline-info" type="submit">Update</button>
                </div>
             </form>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
          </div>
       </div>
    </div>
@@ -84,17 +78,13 @@
                   <label>Name:</label>
                   <input type="text" class="form-control" name="name" required="1">
                </div>
-                <div class="form-group">
-                  <label>Store:</label>
-                  <input type="text" class="form-control" name="store" required="1">
-               </div>
                <div class="form-group">
-                  <button class="btn btn-primary" type="submit">Add a Puppy</button>
+                  <button class="btn btn-outline-info" type="submit">Add a Puppy</button>
                </div>
             </form>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
          </div>
       </div>
    </div>
